@@ -114,7 +114,7 @@ class Feature1Analysis:
 
         # generates the following bar chart.
         labels = [item[0] for item in sorted_results]
-        resolution_days = [item[1] for item in sorted_results]
+        resolution_days = [item[1]["median"] for item in sorted_results]
 
         plt.figure(figsize=(12, 6))
 
