@@ -97,16 +97,20 @@ class Feature1Analysis:
         }
 
         # sorts the labels by median resolution time.
-        sorted_results = sorted(
-            results.items(),
-            key=lambda item: item[1]
-        )
+       sorted_results = sorted(
+           results.items(),
+           key=lambda item: item[1]["median"]
+       )
 
         print("\nLABEL RESOLUTION ANALYSIS")
         print("-" * 55)
 
-        for label, days in sorted_results:
-            print(f"{label:<30} {days:>20.2f}")
+       for label, data in sorted_results:
+           print(
+               f"{label:<35} "
+               f"Median: {data['median']:>8.2f} days "
+               f"Issues: {data['count']}"
+           )
 
         # generates the following bar chart.
         labels = [item[0] for item in sorted_results]
