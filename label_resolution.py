@@ -40,8 +40,13 @@ class Feature1Analysis:
         missing_close_dates = 0
 
         for issue in self.issues:
+            closing_events = [
+                event for event in issue.events
+                if event.event_type == 'closed'
+                and event.event_date is not None
+            ]
 
-            if issue.state != State.closed:
+            if not closing_events:
                 continue
 
             closed_issues += 1
@@ -49,11 +54,10 @@ class Feature1Analysis:
             if issue.created_date is None:
                 continue
 
-            close_date = self.get_resolution_date(issue)
+            close_date = max(
+                event.event_date for event in closing_events
+            )
 
-            if close_date is None:
-                missing_close_dates += 1
-                continue
 
             resolution_days = (
                 close_date - issue.created_date
