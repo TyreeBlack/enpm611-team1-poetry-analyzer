@@ -97,7 +97,7 @@ class Feature1Analysis:
         }
 
         # sorts the labels by median resolution time.
-       sorted_results = sorted(
+        sorted_results = sorted(
            results.items(),
            key=lambda item: item[1]["median"]
        )
@@ -105,7 +105,7 @@ class Feature1Analysis:
         print("\nLABEL RESOLUTION ANALYSIS")
         print("-" * 55)
 
-       for label, data in sorted_results:
+        for label, data in sorted_results:
            print(
                f"{label:<35} "
                f"Median: {data['median']:>8.2f} days "
