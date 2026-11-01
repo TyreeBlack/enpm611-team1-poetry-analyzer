@@ -90,8 +90,11 @@ class Feature1Analysis:
         results = {}
 
         for label, resolution_times in label_data.items():
-
-            results[label] = median(resolution_times)
+            if len(resolution_times) >= 5:
+                results[label] = {
+                    "median": median(resolution_times),
+                    "count": len(resolution_times)
+        }
 
         # sorts the labels by median resolution time.
         sorted_results = sorted(
